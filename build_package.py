@@ -17,6 +17,7 @@ VERSION = "1.1.1"
 RELEASE_DATE = "2026-06-23"
 EXE_NAME = "DNF_Skill_IMG_Manager"
 PACKAGE_NAME = f"{TOOL_ID}-{VERSION}-win-x64.zip"
+PROJECT_URL = "https://github.com/PhysicalWorldDo/DNF-Skill-IMG-Manager"
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 TOOLALL_ROOT = PROJECT_ROOT.parents[1]
@@ -50,6 +51,7 @@ def _manifest(package_url: str, sha256: str, size: int) -> dict:
         "icon": "",
         "entry": "bin/run.cmd",
         "needAdmin": False,
+        "projectUrl": PROJECT_URL,
         "latest": {"stable": VERSION},
         "versions": [
             {
