@@ -1,0 +1,26 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Build artifacts
+build/
+dist/
+*.spec
+
+# Local runtime/user files
+config/
+data/exports/
+data/*_check.png
+data/ui_layout_check*.png
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak

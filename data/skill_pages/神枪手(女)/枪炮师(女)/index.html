@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>神枪手(女) / 枪炮师(女)</title>
+    <link rel="stylesheet" href="../../_shared/styles.css" />
+  </head>
+  <body>
+    <main class="dnf-window" aria-label="神枪手(女) / 枪炮师(女)">
+      <nav class="tabs" aria-label="技能页签">
+        <button class="tab is-active" data-tab="learn" type="button">学习技能</button>
+        <button class="tab" data-tab="vp" type="button">技能进化</button>
+      </nav>
+      <section class="main-panel">
+        <div class="panel-topbar">
+          <button class="menu-button" type="button">技能</button>
+        </div>
+        <section class="tab-page is-active" id="learnPage">
+          <div class="learn-scroll">
+            <div class="skill-canvas" id="skillCanvas">
+              <svg class="link-layer" id="linkLayer" aria-hidden="true"></svg>
+              <div class="skill-layer" id="skillLayer"></div>
+            </div>
+          </div>
+        </section>
+        <section class="tab-page" id="vpPage">
+          <div class="vp-scroll">
+            <div class="vp-canvas" id="vpCanvas"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="skill-data.js"></script>
+    <script src="../../_shared/app.js"></script>
+  </body>
+</html>
