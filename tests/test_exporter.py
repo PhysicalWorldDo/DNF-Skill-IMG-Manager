@@ -13,7 +13,10 @@ class FakeNpkIO:
 
     def read_entry(self, npk_path: Path, img_path: str) -> bytes:
         entries = self.entries_by_npk[npk_path.name]
-        return entries[img_path]
+        try:
+            return entries[img_path]
+        except KeyError:
+            raise FileNotFoundError(f"IMG {img_path} not found in {npk_path}") from None
 
     def write_npk(self, output_path: Path, entries, overwrite: bool) -> None:
         self.written.append((output_path, list(entries), overwrite))
@@ -85,3 +88,37 @@ def test_exporter_reports_missing_rule_based_source_npk(tmp_path):
         exporter.export_skill(
             ExportJob(skill=skill, source_dir=tmp_path, output_dir=tmp_path / "out")
         )
+
+
+def test_exporter_skips_missing_img_entries_and_reports_them(tmp_path):
+    source_dir = tmp_path / "source"
+    source_dir.mkdir()
+    (source_dir / "sprite_character_thief_effect_yatagarasu.NPK").write_bytes(b"npk")
+
+    io = FakeNpkIO(
+        {
+            "sprite_character_thief_effect_yatagarasu.NPK": {
+                "sprite/character/thief/effect/yatagarasu/ember.img": b"ember",
+            },
+        }
+    )
+    exporter = NpkExporter(io)
+    skill = make_skill(
+        "缺一张图",
+        [
+            "sprite/character/thief/effect/yatagarasu/dummymotion.img",
+            "sprite/character/thief/effect/yatagarasu/ember.img",
+        ],
+    )
+
+    report = exporter.export_skill(
+        ExportJob(skill=skill, source_dir=source_dir, output_dir=tmp_path / "out")
+    )
+
+    assert report.entry_count == 1
+    assert report.missing_img_paths == (
+        "sprite/character/thief/effect/yatagarasu/dummymotion.img",
+    )
+    assert io.written[0][1] == [
+        ("sprite/character/thief/effect/yatagarasu/ember.img", b"ember"),
+    ]

@@ -35,6 +35,7 @@ class ExportReport:
     entry_count: int
     byte_count: int
     source_npks: tuple[Path, ...]
+    missing_img_paths: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)

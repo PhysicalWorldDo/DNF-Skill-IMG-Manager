@@ -13,14 +13,14 @@ TOOL_ID = "dnf_skill_img_manager"
 TOOL_NAME = "DNF 角色技能 IMG 管理器"
 CATEGORY = "角色工具"
 DESCRIPTION = "查看 DNF 角色技能 IMG 数据，并按技能整理关联 IMG 导出 NPK。"
-VERSION = "1.1.3"
+VERSION = "1.1.4"
 RELEASE_DATE = "2026-06-24"
 EXE_NAME = "DNF_Skill_IMG_Manager"
 PACKAGE_NAME = f"{TOOL_ID}-{VERSION}-win-x64.zip"
 PROJECT_URL = "https://github.com/PhysicalWorldDo/DNF-Skill-IMG-Manager"
 CHANGELOG = [
-    "修正 skill_pages 内置数据更新位置，避免工具箱更新时保留旧数据。",
-    "内置技能页现在随 bin/app 程序文件一起替换，确保更新后读取最新技能数据。",
+    "导出技能时跳过源 NPK 中缺失的 IMG 条目，继续导出其余可读取 IMG。",
+    "导出报告和日志会列出被跳过的缺失 IMG 路径。",
 ]
 
 PROJECT_ROOT = Path(__file__).resolve().parent

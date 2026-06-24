@@ -24,6 +24,7 @@ class NpkExporter:
 
         seen: set[str] = set()
         entries: list[tuple[str, bytes]] = []
+        missing_img_paths: list[str] = []
         source_npks: list[Path] = []
         for raw_img_path in job.skill.img_paths:
             img_path = normalize_img_path(raw_img_path)
@@ -41,7 +42,11 @@ class NpkExporter:
             source_npk = resolve_source_npk(job.source_dir, img_path)
             if not source_npk.exists():
                 raise FileNotFoundError(f"Missing source NPK {source_npk.name} for IMG {img_path}")
-            data = self._npk_io.read_entry(source_npk, img_path)
+            try:
+                data = self._npk_io.read_entry(source_npk, img_path)
+            except FileNotFoundError:
+                missing_img_paths.append(img_path)
+                continue
             entries.append((img_path, data))
             if source_npk not in source_npks:
                 source_npks.append(source_npk)
@@ -53,6 +58,7 @@ class NpkExporter:
             entry_count=len(entries),
             byte_count=sum(len(data) for _path, data in entries),
             source_npks=tuple(source_npks),
+            missing_img_paths=tuple(missing_img_paths),
         )
 
     def missing_source_npks(
