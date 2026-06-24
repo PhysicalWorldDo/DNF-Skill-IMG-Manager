@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 56,
+    "learnSlots": 53,
     "vpSkills": 8,
-    "iconOk": 56,
+    "iconOk": 53,
     "iconMissing": 0,
-    "links": 7
+    "links": 7,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -456,30 +457,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "超载电波轰击"
         }
       ]
-    },
-    {
-      "index": 308,
-      "english": "InstantRealization3",
-      "name": "卓越之力",
-      "x": 235,
-      "y": 1005,
-      "icon": "assets/icons/308_InstantRealization3.png"
-    },
-    {
-      "index": 312,
-      "english": "ClueOfAwakening3",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/312_ClueOfAwakening3.png"
-    },
-    {
-      "index": 316,
-      "english": "TemporaryRealization3",
-      "name": "超卓之心",
-      "x": 329,
-      "y": 1005,
-      "icon": "assets/icons/316_TemporaryRealization3.png"
     },
     {
       "index": 332,

@@ -1,10 +1,55 @@
 {
   "stats": {
-    "learnSlots": 52,
+    "learnSlots": 48,
     "vpSkills": 8,
-    "iconOk": 52,
+    "iconOk": 48,
     "iconMissing": 0,
-    "links": 8
+    "links": 7,
+    "hiddenAfterThirdAwakening": 4
   },
+  "hiddenAfterThirdAwakening": [
+    {
+      "index": 247,
+      "skillPath": "Mage/Avatar.skl",
+      "english": "Avatar",
+      "name": "使徒化身",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    },
+    {
+      "index": 376,
+      "skillPath": "Mage/InstantRealization3.skl",
+      "english": "InstantRealization3",
+      "name": "卓越之力",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    },
+    {
+      "index": 381,
+      "skillPath": "Mage/ClueOfAwakening3.skl",
+      "english": "ClueOfAwakening3",
+      "name": "觉醒之抉择",
+      "enableByThirdAwakeningQuest": [
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "index": 386,
+      "skillPath": "Mage/TemporaryRealization3.skl",
+      "english": "TemporaryRealization3",
+      "name": "超卓之心",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    }
+  ],
   "errors": []
 }

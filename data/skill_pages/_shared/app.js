@@ -19,6 +19,18 @@ function iconSrc(skill) {
   return skill.icon || "";
 }
 
+function groupedSkillsByPosition() {
+  const groups = new Map();
+  data.skills.forEach((skill) => {
+    const key = `${skill.x},${skill.y}`;
+    if (!groups.has(key)) {
+      groups.set(key, []);
+    }
+    groups.get(key).push(skill);
+  });
+  return [...groups.values()];
+}
+
 function showSkillTooltip(skill) {
   skillTooltip.textContent = skill.name || skill.english || "";
   skillTooltip.style.left = `${skill.x + 44}px`;
@@ -53,17 +65,25 @@ function renderLinks() {
   });
 }
 
-function renderSkills() {
-  const maxY = Math.max(...data.skills.map((skill) => skill.y)) + 76;
-  skillCanvas.style.minHeight = `${maxY}px`;
+function stackPosition(index, total) {
+  if (total === 2) {
+    return index === 0 ? { x: 0, y: 0 } : { x: 14, y: 14 };
+  }
 
-  data.skills.forEach((skill) => {
+  const positions = [
+    { x: 0, y: 0 },
+    { x: 14, y: 0 },
+    { x: 7, y: 14 },
+    { x: 14, y: 14 },
+  ];
+  return positions[index] || { x: 14, y: 14 };
+}
+
+function createSkillButton(skill) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "skill-node";
     button.setAttribute("aria-label", skill.name || skill.english || "skill");
-    button.style.left = `${skill.x}px`;
-    button.style.top = `${skill.y}px`;
 
     const frame = document.createElement("div");
     frame.className = "skill-frame";
@@ -84,7 +104,40 @@ function renderSkills() {
     button.addEventListener("focus", () => showSkillTooltip(skill));
     button.addEventListener("blur", hideSkillTooltip);
 
-    skillLayer.append(button);
+    return button;
+}
+
+function renderSkills() {
+  const maxY = Math.max(...data.skills.map((skill) => skill.y)) + 76;
+  skillCanvas.style.minHeight = `${maxY}px`;
+
+  groupedSkillsByPosition().forEach((group) => {
+    if (group.length === 1) {
+      const skill = group[0];
+      const button = createSkillButton(skill);
+      button.style.left = `${skill.x}px`;
+      button.style.top = `${skill.y}px`;
+      skillLayer.append(button);
+      return;
+    }
+
+    const baseSkill = group[0];
+    const stack = document.createElement("div");
+    stack.className = `skill-stack stack-size-${Math.min(group.length, 4)}`;
+    stack.style.left = `${baseSkill.x}px`;
+    stack.style.top = `${baseSkill.y}px`;
+
+    group.forEach((skill, index) => {
+      const button = createSkillButton(skill);
+      const pos = stackPosition(index, group.length);
+      button.classList.add("is-stacked");
+      button.style.setProperty("--stack-left", `${pos.x}px`);
+      button.style.setProperty("--stack-top", `${pos.y}px`);
+      button.style.zIndex = `${index + 1}`;
+      stack.append(button);
+    });
+
+    skillLayer.append(stack);
   });
 }
 

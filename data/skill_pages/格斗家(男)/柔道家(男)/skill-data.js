@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 54,
+    "learnSlots": 51,
     "vpSkills": 8,
-    "iconOk": 54,
+    "iconOk": 51,
     "iconMissing": 0,
-    "links": 9
+    "links": 9,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -472,30 +473,6 @@ window.BERSERKER_SKILL_DATA = {
       "x": 0,
       "y": 67,
       "icon": "assets/icons/511_ArmorMasteryEtc.png"
-    },
-    {
-      "index": 260,
-      "english": "InstantRealization4",
-      "name": "卓越之力",
-      "x": 235,
-      "y": 1005,
-      "icon": "assets/icons/260_InstantRealization4.png"
-    },
-    {
-      "index": 264,
-      "english": "ClueOfAwakening4",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/264_ClueOfAwakening4.png"
-    },
-    {
-      "index": 268,
-      "english": "TemporaryRealization4",
-      "name": "超卓之心",
-      "x": 329,
-      "y": 1005,
-      "icon": "assets/icons/268_TemporaryRealization4.png"
     },
     {
       "index": 272,

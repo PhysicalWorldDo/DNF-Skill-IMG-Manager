@@ -1,10 +1,45 @@
 {
   "stats": {
-    "learnSlots": 56,
+    "learnSlots": 53,
     "vpSkills": 9,
-    "iconOk": 56,
+    "iconOk": 53,
     "iconMissing": 0,
-    "links": 7
+    "links": 7,
+    "hiddenAfterThirdAwakening": 3
   },
+  "hiddenAfterThirdAwakening": [
+    {
+      "index": 249,
+      "skillPath": "Thief/InstantRealization1.skl",
+      "english": "InstantRealization1",
+      "name": "卓越之力",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    },
+    {
+      "index": 253,
+      "skillPath": "Thief/ClueOfAwakening1.skl",
+      "english": "ClueOfAwakening1",
+      "name": "觉醒之抉择",
+      "enableByThirdAwakeningQuest": [
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "index": 257,
+      "skillPath": "Thief/TemporaryRealization1.skl",
+      "english": "TemporaryRealization1",
+      "name": "超卓之心",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    }
+  ],
   "errors": []
 }

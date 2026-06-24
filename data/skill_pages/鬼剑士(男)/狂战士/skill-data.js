@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 56,
+    "learnSlots": 53,
     "vpSkills": 8,
-    "iconOk": 56,
+    "iconOk": 53,
     "iconMissing": 0,
-    "links": 6
+    "links": 6,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -416,30 +417,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "残忍终幕"
         }
       ]
-    },
-    {
-      "index": 321,
-      "english": "InstantRealization3",
-      "name": "卓越之力",
-      "x": 235,
-      "y": 1005,
-      "icon": "assets/icons/321_InstantRealization3.png"
-    },
-    {
-      "index": 326,
-      "english": "ClueOfAwakening3",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/326_ClueOfAwakening3.png"
-    },
-    {
-      "index": 331,
-      "english": "TemporaryRealization3",
-      "name": "超卓之心",
-      "x": 329,
-      "y": 1005,
-      "icon": "assets/icons/331_TemporaryRealization3.png"
     },
     {
       "index": 339,

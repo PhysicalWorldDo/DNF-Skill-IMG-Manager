@@ -1,10 +1,45 @@
 {
   "stats": {
-    "learnSlots": 59,
+    "learnSlots": 56,
     "vpSkills": 10,
-    "iconOk": 59,
+    "iconOk": 56,
     "iconMissing": 0,
-    "links": 29
+    "links": 29,
+    "hiddenAfterThirdAwakening": 3
   },
+  "hiddenAfterThirdAwakening": [
+    {
+      "index": 266,
+      "skillPath": "DemonicSwordman/InstantRealization1.skl",
+      "english": "InstantRealization1",
+      "name": "卓越之力",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    },
+    {
+      "index": 267,
+      "skillPath": "DemonicSwordman/ClueOfAwakening1.skl",
+      "english": "ClueOfAwakening1",
+      "name": "觉醒之心",
+      "enableByThirdAwakeningQuest": [
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "index": 268,
+      "skillPath": "DemonicSwordman/TemporaryRealization1.skl",
+      "english": "TemporaryRealization1",
+      "name": "超卓之心",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    }
+  ],
   "errors": []
 }

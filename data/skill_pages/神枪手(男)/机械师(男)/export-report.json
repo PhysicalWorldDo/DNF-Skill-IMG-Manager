@@ -1,10 +1,45 @@
 {
   "stats": {
-    "learnSlots": 57,
+    "learnSlots": 54,
     "vpSkills": 7,
-    "iconOk": 57,
+    "iconOk": 54,
     "iconMissing": 0,
-    "links": 7
+    "links": 7,
+    "hiddenAfterThirdAwakening": 3
   },
+  "hiddenAfterThirdAwakening": [
+    {
+      "index": 320,
+      "skillPath": "Gunner/InstantRealization3.skl",
+      "english": "InstantRealization3",
+      "name": "卓越之力",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    },
+    {
+      "index": 324,
+      "skillPath": "Gunner/ClueOfAwakening3.skl",
+      "english": "ClueOfAwakening3",
+      "name": "觉醒之抉择",
+      "enableByThirdAwakeningQuest": [
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "index": 328,
+      "skillPath": "Gunner/TemporaryRealization3.skl",
+      "english": "TemporaryRealization3",
+      "name": "超卓之心",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    }
+  ],
   "errors": []
 }

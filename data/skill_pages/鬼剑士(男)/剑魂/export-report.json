@@ -1,10 +1,45 @@
 {
   "stats": {
-    "learnSlots": 62,
+    "learnSlots": 59,
     "vpSkills": 8,
-    "iconOk": 62,
+    "iconOk": 59,
     "iconMissing": 0,
-    "links": 9
+    "links": 9,
+    "hiddenAfterThirdAwakening": 3
   },
+  "hiddenAfterThirdAwakening": [
+    {
+      "index": 319,
+      "skillPath": "Swordman/InstantRealization1.skl",
+      "english": "InstantRealization1",
+      "name": "卓越之力",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    },
+    {
+      "index": 324,
+      "skillPath": "Swordman/ClueOfAwakening1.skl",
+      "english": "ClueOfAwakening1",
+      "name": "觉醒之抉择",
+      "enableByThirdAwakeningQuest": [
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "index": 329,
+      "skillPath": "Swordman/TemporaryRealization1.skl",
+      "english": "TemporaryRealization1",
+      "name": "超卓之心",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    }
+  ],
   "errors": []
 }

@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 54,
+    "learnSlots": 51,
     "vpSkills": 8,
-    "iconOk": 54,
+    "iconOk": 51,
     "iconMissing": 0,
-    "links": 10
+    "links": 10,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -464,30 +465,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "崇高誓言"
         }
       ]
-    },
-    {
-      "index": 270,
-      "english": "InstantRealization1",
-      "name": "卓越之力",
-      "x": 235,
-      "y": 1005,
-      "icon": "assets/icons/270_InstantRealization1.png"
-    },
-    {
-      "index": 274,
-      "english": "ClueOfAwakening1",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/274_ClueOfAwakening1.png"
-    },
-    {
-      "index": 278,
-      "english": "TemporaryRealization1",
-      "name": "超卓之心",
-      "x": 329,
-      "y": 1005,
-      "icon": "assets/icons/278_TemporaryRealization1.png"
     },
     {
       "index": 121,

@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 58,
+    "learnSlots": 55,
     "vpSkills": 9,
-    "iconOk": 58,
+    "iconOk": 55,
     "iconMissing": 0,
-    "links": 15
+    "links": 15,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -458,30 +459,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "鬼王追魂剑"
         }
       ]
-    },
-    {
-      "index": 320,
-      "english": "InstantRealization2",
-      "name": "卓越之力",
-      "x": 235,
-      "y": 1005,
-      "icon": "assets/icons/320_InstantRealization2.png"
-    },
-    {
-      "index": 325,
-      "english": "ClueOfAwakening2",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/325_ClueOfAwakening2.png"
-    },
-    {
-      "index": 330,
-      "english": "TemporaryRealization2",
-      "name": "超卓之心",
-      "x": 329,
-      "y": 1005,
-      "icon": "assets/icons/330_TemporaryRealization2.png"
     },
     {
       "index": 341,

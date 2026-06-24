@@ -1,10 +1,45 @@
 {
   "stats": {
-    "learnSlots": 48,
+    "learnSlots": 45,
     "vpSkills": 8,
-    "iconOk": 48,
+    "iconOk": 45,
     "iconMissing": 0,
-    "links": 4
+    "links": 4,
+    "hiddenAfterThirdAwakening": 3
   },
+  "hiddenAfterThirdAwakening": [
+    {
+      "index": 270,
+      "skillPath": "DemonicLancer/InstantRealization4.skl",
+      "english": "InstantRealization4",
+      "name": "卓越之力",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    },
+    {
+      "index": 274,
+      "skillPath": "DemonicLancer/ClueOfAwakening4.skl",
+      "english": "ClueOfAwakening4",
+      "name": "觉醒之抉择",
+      "enableByThirdAwakeningQuest": [
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "index": 278,
+      "skillPath": "DemonicLancer/TemporaryRealization4.skl",
+      "english": "TemporaryRealization4",
+      "name": "超卓之心",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    }
+  ],
   "errors": []
 }

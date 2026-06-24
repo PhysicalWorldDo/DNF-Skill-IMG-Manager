@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 52,
+    "learnSlots": 49,
     "vpSkills": 8,
-    "iconOk": 52,
+    "iconOk": 49,
     "iconMissing": 0,
-    "links": 11
+    "links": 11,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -440,30 +441,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "完美控制"
         }
       ]
-    },
-    {
-      "index": 318,
-      "english": "InstantRealization1",
-      "name": "卓越之力",
-      "x": 235,
-      "y": 1005,
-      "icon": "assets/icons/318_InstantRealization1.png"
-    },
-    {
-      "index": 322,
-      "english": "ClueOfAwakening1",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/322_ClueOfAwakening1.png"
-    },
-    {
-      "index": 326,
-      "english": "TemporaryRealization1",
-      "name": "超卓之心",
-      "x": 329,
-      "y": 1005,
-      "icon": "assets/icons/326_TemporaryRealization1.png"
     },
     {
       "index": 336,

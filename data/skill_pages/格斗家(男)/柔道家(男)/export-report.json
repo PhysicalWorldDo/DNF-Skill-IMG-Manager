@@ -1,10 +1,45 @@
 {
   "stats": {
-    "learnSlots": 54,
+    "learnSlots": 51,
     "vpSkills": 8,
-    "iconOk": 54,
+    "iconOk": 51,
     "iconMissing": 0,
-    "links": 9
+    "links": 9,
+    "hiddenAfterThirdAwakening": 3
   },
+  "hiddenAfterThirdAwakening": [
+    {
+      "index": 260,
+      "skillPath": "ATFighter/InstantRealization4.skl",
+      "english": "InstantRealization4",
+      "name": "卓越之力",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    },
+    {
+      "index": 264,
+      "skillPath": "ATFighter/ClueOfAwakening4.skl",
+      "english": "ClueOfAwakening4",
+      "name": "觉醒之抉择",
+      "enableByThirdAwakeningQuest": [
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "index": 268,
+      "skillPath": "ATFighter/TemporaryRealization4.skl",
+      "english": "TemporaryRealization4",
+      "name": "超卓之心",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    }
+  ],
   "errors": []
 }

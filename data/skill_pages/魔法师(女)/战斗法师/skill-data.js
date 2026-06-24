@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 52,
+    "learnSlots": 48,
     "vpSkills": 8,
-    "iconOk": 52,
+    "iconOk": 48,
     "iconMissing": 0,
-    "links": 8
+    "links": 7,
+    "hiddenAfterThirdAwakening": 4
   },
   "skills": [
     {
@@ -360,14 +361,6 @@ window.BERSERKER_SKILL_DATA = {
       "icon": "assets/icons/126_MultiRole.png"
     },
     {
-      "index": 247,
-      "english": "Avatar",
-      "name": "使徒化身",
-      "x": 141,
-      "y": 938,
-      "icon": "assets/icons/247_Avatar.png"
-    },
-    {
       "index": 300,
       "english": "AvatarPassive",
       "name": "使徒封印",
@@ -416,30 +409,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "炫纹绽放"
         }
       ]
-    },
-    {
-      "index": 376,
-      "english": "InstantRealization3",
-      "name": "卓越之力",
-      "x": 141,
-      "y": 1005,
-      "icon": "assets/icons/376_InstantRealization3.png"
-    },
-    {
-      "index": 381,
-      "english": "ClueOfAwakening3",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/381_ClueOfAwakening3.png"
-    },
-    {
-      "index": 386,
-      "english": "TemporaryRealization3",
-      "name": "超卓之心",
-      "x": 235,
-      "y": 1005,
-      "icon": "assets/icons/386_TemporaryRealization3.png"
     },
     {
       "index": 396,
@@ -570,14 +539,6 @@ window.BERSERKER_SKILL_DATA = {
       "y1": 914,
       "x2": 256,
       "y2": 1008
-    },
-    {
-      "from": 406,
-      "to": 247,
-      "x1": 209,
-      "y1": 981,
-      "x2": 162,
-      "y2": 941
     }
   ],
   "vpSkills": [

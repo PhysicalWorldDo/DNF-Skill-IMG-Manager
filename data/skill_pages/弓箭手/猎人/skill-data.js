@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 47,
+    "learnSlots": 44,
     "vpSkills": 8,
-    "iconOk": 47,
+    "iconOk": 44,
     "iconMissing": 0,
-    "links": 3
+    "links": 3,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -424,30 +425,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "空域管制者"
         }
       ]
-    },
-    {
-      "index": 270,
-      "english": "ClueOfAwakening3",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/270_ClueOfAwakening3.png"
-    },
-    {
-      "index": 275,
-      "english": "InstantRealization3",
-      "name": "卓越之力",
-      "x": 188,
-      "y": 1005,
-      "icon": "assets/icons/275_InstantRealization3.png"
-    },
-    {
-      "index": 280,
-      "english": "TemporaryRealization3",
-      "name": "超卓之心",
-      "x": 282,
-      "y": 1005,
-      "icon": "assets/icons/280_TemporaryRealization3.png"
     },
     {
       "index": 511,

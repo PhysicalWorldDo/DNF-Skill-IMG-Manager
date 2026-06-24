@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 48,
+    "learnSlots": 45,
     "vpSkills": 8,
-    "iconOk": 48,
+    "iconOk": 45,
     "iconMissing": 0,
-    "links": 18
+    "links": 18,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -408,30 +409,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "终末时域"
         }
       ]
-    },
-    {
-      "index": 281,
-      "english": "InstantRealization1",
-      "name": "卓越之力",
-      "x": 282,
-      "y": 335,
-      "icon": "assets/icons/281_InstantRealization1.png"
-    },
-    {
-      "index": 282,
-      "english": "ClueOfAwakening1",
-      "name": "觉醒之心",
-      "x": 376,
-      "y": 335,
-      "icon": "assets/icons/282_ClueOfAwakening1.png"
-    },
-    {
-      "index": 283,
-      "english": "TemporaryRealization1",
-      "name": "超卓之心",
-      "x": 329,
-      "y": 335,
-      "icon": "assets/icons/283_TemporaryRealization1.png"
     },
     {
       "index": 407,

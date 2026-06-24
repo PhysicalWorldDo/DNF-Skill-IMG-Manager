@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 51,
+    "learnSlots": 48,
     "vpSkills": 8,
-    "iconOk": 51,
+    "iconOk": 48,
     "iconMissing": 0,
-    "links": 5
+    "links": 5,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -448,30 +449,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "潜影幻杀"
         }
       ]
-    },
-    {
-      "index": 252,
-      "english": "InstantRealization4",
-      "name": "卓越之力",
-      "x": 235,
-      "y": 1005,
-      "icon": "assets/icons/252_InstantRealization4.png"
-    },
-    {
-      "index": 256,
-      "english": "ClueOfAwakening4",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/256_ClueOfAwakening4.png"
-    },
-    {
-      "index": 260,
-      "english": "TemporaryRealization4",
-      "name": "超卓之心",
-      "x": 329,
-      "y": 1005,
-      "icon": "assets/icons/260_TemporaryRealization4.png"
     },
     {
       "index": 270,

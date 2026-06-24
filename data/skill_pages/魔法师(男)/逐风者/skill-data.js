@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 47,
+    "learnSlots": 44,
     "vpSkills": 8,
-    "iconOk": 47,
+    "iconOk": 44,
     "iconMissing": 0,
-    "links": 1
+    "links": 1,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -416,30 +417,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "裂变风暴"
         }
       ]
-    },
-    {
-      "index": 289,
-      "english": "InstantRealization4",
-      "name": "卓越之力",
-      "x": 188,
-      "y": 1005,
-      "icon": "assets/icons/289_InstantRealization4.png"
-    },
-    {
-      "index": 294,
-      "english": "ClueOfAwakening4",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/294_ClueOfAwakening4.png"
-    },
-    {
-      "index": 299,
-      "english": "TemporaryRealization4",
-      "name": "超卓之心",
-      "x": 282,
-      "y": 1005,
-      "icon": "assets/icons/299_TemporaryRealization4.png"
     },
     {
       "index": 154,

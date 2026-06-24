@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 56,
+    "learnSlots": 53,
     "vpSkills": 9,
-    "iconOk": 56,
+    "iconOk": 53,
     "iconMissing": 0,
-    "links": 7
+    "links": 7,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -490,30 +491,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "影噬"
         }
       ]
-    },
-    {
-      "index": 249,
-      "english": "InstantRealization1",
-      "name": "卓越之力",
-      "x": 235,
-      "y": 1005,
-      "icon": "assets/icons/249_InstantRealization1.png"
-    },
-    {
-      "index": 253,
-      "english": "ClueOfAwakening1",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/253_ClueOfAwakening1.png"
-    },
-    {
-      "index": 257,
-      "english": "TemporaryRealization1",
-      "name": "超卓之心",
-      "x": 329,
-      "y": 1005,
-      "icon": "assets/icons/257_TemporaryRealization1.png"
     },
     {
       "index": 274,

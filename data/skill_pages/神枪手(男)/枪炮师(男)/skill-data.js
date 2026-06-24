@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 53,
+    "learnSlots": 50,
     "vpSkills": 8,
-    "iconOk": 53,
+    "iconOk": 50,
     "iconMissing": 0,
-    "links": 8
+    "links": 8,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -456,30 +457,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "真空双重爆弹"
         }
       ]
-    },
-    {
-      "index": 319,
-      "english": "InstantRealization2",
-      "name": "卓越之力",
-      "x": 235,
-      "y": 1005,
-      "icon": "assets/icons/319_InstantRealization2.png"
-    },
-    {
-      "index": 323,
-      "english": "ClueOfAwakening2",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/323_ClueOfAwakening2.png"
-    },
-    {
-      "index": 327,
-      "english": "TemporaryRealization2",
-      "name": "超卓之心",
-      "x": 329,
-      "y": 1005,
-      "icon": "assets/icons/327_TemporaryRealization2.png"
     },
     {
       "index": 334,

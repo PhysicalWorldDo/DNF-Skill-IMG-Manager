@@ -13,11 +13,15 @@ TOOL_ID = "dnf_skill_img_manager"
 TOOL_NAME = "DNF 角色技能 IMG 管理器"
 CATEGORY = "角色工具"
 DESCRIPTION = "查看 DNF 角色技能 IMG 数据，并按技能整理关联 IMG 导出 NPK。"
-VERSION = "1.1.1"
-RELEASE_DATE = "2026-06-23"
+VERSION = "1.1.2"
+RELEASE_DATE = "2026-06-24"
 EXE_NAME = "DNF_Skill_IMG_Manager"
 PACKAGE_NAME = f"{TOOL_ID}-{VERSION}-win-x64.zip"
 PROJECT_URL = "https://github.com/PhysicalWorldDo/DNF-Skill-IMG-Manager"
+CHANGELOG = [
+    "更新内置 skill_pages 技能页数据。",
+    "同步技能页图标、导出报告和技能数据文件。",
+]
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 TOOLALL_ROOT = PROJECT_ROOT.parents[1]
@@ -41,7 +45,46 @@ def _remove_tree(path: Path, allowed_parent: Path) -> None:
     shutil.rmtree(path)
 
 
-def _manifest(package_url: str, sha256: str, size: int) -> dict:
+def _version_entry(package_url: str, sha256: str, size: int) -> dict:
+    return {
+        "version": VERSION,
+        "channel": "stable",
+        "releaseDate": RELEASE_DATE,
+        "packageUrl": package_url,
+        "sha256": sha256,
+        "size": size,
+        "changelog": CHANGELOG,
+        "minToolboxVersion": "0.1.0",
+    }
+
+
+def _merge_versions(existing_versions: list[dict], current_version: dict) -> list[dict]:
+    merged = []
+    replaced = False
+    for item in existing_versions:
+        if item.get("version") == VERSION and item.get("channel") == current_version["channel"]:
+            if not replaced:
+                merged.append(current_version)
+                replaced = True
+            continue
+        merged.append(item)
+    if not replaced:
+        merged.append(current_version)
+    return merged
+
+
+def _read_existing_versions(path: Path) -> list[dict]:
+    if not path.exists():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    versions = data.get("versions", [])
+    if not isinstance(versions, list):
+        return []
+    return versions
+
+
+def _manifest(package_url: str, sha256: str, size: int, existing_versions: list[dict] | None = None) -> dict:
+    versions = _merge_versions(existing_versions or [], _version_entry(package_url, sha256, size))
     return {
         "schemaVersion": 1,
         "id": TOOL_ID,
@@ -53,24 +96,7 @@ def _manifest(package_url: str, sha256: str, size: int) -> dict:
         "needAdmin": False,
         "projectUrl": PROJECT_URL,
         "latest": {"stable": VERSION},
-        "versions": [
-            {
-                "version": VERSION,
-                "channel": "stable",
-                "releaseDate": RELEASE_DATE,
-                "packageUrl": package_url,
-                "sha256": sha256,
-                "size": size,
-                "changelog": [
-                    "优化技能页布局：技能图谱收窄，中间独立显示 IMG 列表，右侧保留大尺寸预览",
-                    "恢复技能图标悬停名称提示",
-                    "技能进化页补充基础技能和进化选项图标",
-                    "IMG 列表使用暗色样式并隐藏 NPK 文件名，动画预览默认暂停",
-                    "保留按技能整理 IMG 导出 NPK",
-                ],
-                "minToolboxVersion": "0.1.0",
-            }
-        ],
+        "versions": versions,
         "permissions": [],
         "tags": ["技能", "IMG", "NPK", "导出"],
         "status": "active",
@@ -181,6 +207,8 @@ def _ensure_index_entry(index_path: Path) -> None:
     }
     for index, item in enumerate(tools):
         if item.get("id") == TOOL_ID:
+            if item == entry:
+                return
             tools[index] = entry
             break
     else:
@@ -197,8 +225,16 @@ def update_manifests(package_path: Path) -> None:
         f"v{VERSION}/{PACKAGE_NAME}"
     )
 
-    _write_json(INDEX_ROOT / "tools" / f"{TOOL_ID}.json", _manifest(local_package_url, sha256, size))
-    _write_json(REGISTRY_ROOT / "tools" / f"{TOOL_ID}.json", _manifest(release_package_url, sha256, size))
+    local_manifest_path = INDEX_ROOT / "tools" / f"{TOOL_ID}.json"
+    registry_manifest_path = REGISTRY_ROOT / "tools" / f"{TOOL_ID}.json"
+    _write_json(
+        local_manifest_path,
+        _manifest(local_package_url, sha256, size, _read_existing_versions(local_manifest_path)),
+    )
+    _write_json(
+        registry_manifest_path,
+        _manifest(release_package_url, sha256, size, _read_existing_versions(registry_manifest_path)),
+    )
     _ensure_index_entry(INDEX_ROOT / "index.json")
     _ensure_index_entry(REGISTRY_ROOT / "index.json")
     print(f"PACKAGE {package_path}")

@@ -1,10 +1,45 @@
 {
   "stats": {
-    "learnSlots": 68,
+    "learnSlots": 65,
     "vpSkills": 8,
-    "iconOk": 68,
+    "iconOk": 65,
     "iconMissing": 0,
-    "links": 16
+    "links": 16,
+    "hiddenAfterThirdAwakening": 3
   },
+  "hiddenAfterThirdAwakening": [
+    {
+      "index": 375,
+      "skillPath": "Mage/InstantRealization2.skl",
+      "english": "InstantRealization2",
+      "name": "卓越之力",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    },
+    {
+      "index": 380,
+      "skillPath": "Mage/ClueOfAwakening2.skl",
+      "english": "ClueOfAwakening2",
+      "name": "觉醒之抉择",
+      "enableByThirdAwakeningQuest": [
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "index": 385,
+      "skillPath": "Mage/TemporaryRealization2.skl",
+      "english": "TemporaryRealization2",
+      "name": "超卓之心",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    }
+  ],
   "errors": []
 }

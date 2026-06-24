@@ -1,10 +1,45 @@
 {
   "stats": {
-    "learnSlots": 49,
+    "learnSlots": 46,
     "vpSkills": 8,
-    "iconOk": 49,
+    "iconOk": 46,
     "iconMissing": 0,
-    "links": 11
+    "links": 11,
+    "hiddenAfterThirdAwakening": 3
   },
+  "hiddenAfterThirdAwakening": [
+    {
+      "index": 277,
+      "skillPath": "Priest/InstantRealization4.skl",
+      "english": "InstantRealization4",
+      "name": "卓越之力",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    },
+    {
+      "index": 281,
+      "skillPath": "Priest/ClueOfAwakening4.skl",
+      "english": "ClueOfAwakening4",
+      "name": "觉醒之抉择",
+      "enableByThirdAwakeningQuest": [
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "index": 285,
+      "skillPath": "Priest/TemporaryRealization4.skl",
+      "english": "TemporaryRealization4",
+      "name": "超卓之心",
+      "enableByThirdAwakeningQuest": [
+        2,
+        0
+      ]
+    }
+  ],
   "errors": []
 }

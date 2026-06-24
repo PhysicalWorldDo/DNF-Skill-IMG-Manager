@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 47,
+    "learnSlots": 44,
     "vpSkills": 7,
-    "iconOk": 47,
+    "iconOk": 44,
     "iconMissing": 0,
-    "links": 13
+    "links": 13,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -414,30 +415,6 @@ window.BERSERKER_SKILL_DATA = {
           "name": "控制歼灭"
         }
       ]
-    },
-    {
-      "index": 442,
-      "english": "InstantRealization5",
-      "name": "卓越之力",
-      "x": 141,
-      "y": 1005,
-      "icon": "assets/icons/442_InstantRealization5.png"
-    },
-    {
-      "index": 443,
-      "english": "ClueOfAwakening5",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/443_ClueOfAwakening5.png"
-    },
-    {
-      "index": 444,
-      "english": "TemporaryRealization5",
-      "name": "超卓之心",
-      "x": 94,
-      "y": 1005,
-      "icon": "assets/icons/444_TemporaryRealization5.png"
     },
     {
       "index": 441,

@@ -10,11 +10,12 @@ window.BERSERKER_SKILL_DATA = {
     "height": 67
   },
   "stats": {
-    "learnSlots": 44,
+    "learnSlots": 41,
     "vpSkills": 8,
-    "iconOk": 44,
+    "iconOk": 41,
     "iconMissing": 0,
-    "links": 9
+    "links": 9,
+    "hiddenAfterThirdAwakening": 3
   },
   "skills": [
     {
@@ -402,36 +403,12 @@ window.BERSERKER_SKILL_DATA = {
       "icon": "assets/icons/346_Havoc.png"
     },
     {
-      "index": 277,
-      "english": "InstantRealization5",
-      "name": "卓越之力",
-      "x": 235,
-      "y": 1005,
-      "icon": "assets/icons/277_InstantRealization5.png"
-    },
-    {
-      "index": 282,
-      "english": "TemporaryRealization5",
-      "name": "超卓之心",
-      "x": 282,
-      "y": 1005,
-      "icon": "assets/icons/282_TemporaryRealization5.png"
-    },
-    {
       "index": 347,
       "english": "UnlinearEntropySkip",
       "name": "熵变 : 非线性跳跃",
       "x": 235,
       "y": 1072,
       "icon": "assets/icons/347_UnlinearEntropySkip.png"
-    },
-    {
-      "index": 272,
-      "english": "ClueOfAwakening5",
-      "name": "觉醒之抉择",
-      "x": 235,
-      "y": 1072,
-      "icon": "assets/icons/272_ClueOfAwakening5.png"
     },
     {
       "index": 348,

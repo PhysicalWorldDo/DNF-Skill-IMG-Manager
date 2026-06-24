@@ -179,6 +179,18 @@ button {
   cursor: pointer;
 }
 
+.skill-stack {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  overflow: visible;
+}
+
+.skill-stack .skill-node {
+  left: var(--stack-left);
+  top: var(--stack-top);
+}
+
 .skill-node.is-selected .skill-frame {
   border-color: #66a6ff;
   box-shadow: 0 0 0 1px #1d4c99, 0 0 9px rgba(60, 132, 255, 0.74);
