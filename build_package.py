@@ -13,14 +13,14 @@ TOOL_ID = "dnf_skill_img_manager"
 TOOL_NAME = "DNF 角色技能 IMG 管理器"
 CATEGORY = "角色工具"
 DESCRIPTION = "查看 DNF 角色技能 IMG 数据，并按技能整理关联 IMG 导出 NPK。"
-VERSION = "1.1.2"
+VERSION = "1.1.3"
 RELEASE_DATE = "2026-06-24"
 EXE_NAME = "DNF_Skill_IMG_Manager"
 PACKAGE_NAME = f"{TOOL_ID}-{VERSION}-win-x64.zip"
 PROJECT_URL = "https://github.com/PhysicalWorldDo/DNF-Skill-IMG-Manager"
 CHANGELOG = [
-    "更新内置 skill_pages 技能页数据。",
-    "同步技能页图标、导出报告和技能数据文件。",
+    "修正 skill_pages 内置数据更新位置，避免工具箱更新时保留旧数据。",
+    "内置技能页现在随 bin/app 程序文件一起替换，确保更新后读取最新技能数据。",
 ]
 
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -160,7 +160,7 @@ def stage_package(dist_dir: Path) -> None:
         ),
         encoding="utf-8",
     )
-    copy_skill_pages(PROJECT_ROOT, STAGED_ROOT)
+    copy_skill_pages(PROJECT_ROOT, app_dir)
     _write_json(STAGED_ROOT / "tool.json", _manifest("", "", 0))
 
 

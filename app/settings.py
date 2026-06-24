@@ -13,6 +13,12 @@ def tool_root() -> Path:
     return Path(__file__).resolve().parents[1]
 
 
+def app_root() -> Path:
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parents[1]
+
+
 def config_dir() -> Path:
     return tool_root() / "config"
 
@@ -22,7 +28,7 @@ def data_dir() -> Path:
 
 
 def skill_pages_dir() -> Path:
-    return data_dir() / "skill_pages"
+    return app_root() / "data" / "skill_pages"
 
 
 class Settings:

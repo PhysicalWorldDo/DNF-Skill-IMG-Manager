@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from app import settings
 from app.models import SkillRecord
 from app.settings import skill_pages_dir
 from app.skill_layout import SkillLayoutRepository, match_layout_skill
@@ -102,3 +103,13 @@ def test_default_skill_pages_dir_is_inside_tool_data_dir():
 
     assert path.name == "skill_pages"
     assert path.parent.name == "data"
+
+
+def test_frozen_skill_pages_dir_uses_bundled_app_data_only(tmp_path, monkeypatch):
+    app_dir = tmp_path / "tool" / "bin" / "app"
+    exe_path = app_dir / "DNF_Skill_IMG_Manager.exe"
+
+    monkeypatch.setattr(settings.sys, "frozen", True, raising=False)
+    monkeypatch.setattr(settings.sys, "executable", str(exe_path))
+
+    assert skill_pages_dir() == app_dir / "data" / "skill_pages"
