@@ -19,6 +19,9 @@ config/
 data/exports/
 data/*_check.png
 data/ui_layout_check*.png
+SkillImgDb.dll
+PvfSkillImgDb.dll
+dnflib.dll
 
 # Logs and temporary files
 *.log

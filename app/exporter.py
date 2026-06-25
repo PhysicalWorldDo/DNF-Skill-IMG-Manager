@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from .dnflib_io import DnflibNpkIO
-from .models import ExportJob, ExportReport
+from .models import ExportJob, ExportReport, MissingSourceNpk
 from .npk_paths import (
     normalize_img_path,
     resolve_source_npk,
@@ -25,6 +25,7 @@ class NpkExporter:
         seen: set[str] = set()
         entries: list[tuple[str, bytes]] = []
         missing_img_paths: list[str] = []
+        missing_source_npks: list[MissingSourceNpk] = []
         source_npks: list[Path] = []
         for raw_img_path in job.skill.img_paths:
             img_path = normalize_img_path(raw_img_path)
@@ -41,7 +42,8 @@ class NpkExporter:
                 continue
             source_npk = resolve_source_npk(job.source_dir, img_path)
             if not source_npk.exists():
-                raise FileNotFoundError(f"Missing source NPK {source_npk.name} for IMG {img_path}")
+                missing_source_npks.append(MissingSourceNpk(source_npk.name, img_path))
+                continue
             try:
                 data = self._npk_io.read_entry(source_npk, img_path)
             except FileNotFoundError:
@@ -59,6 +61,7 @@ class NpkExporter:
             byte_count=sum(len(data) for _path, data in entries),
             source_npks=tuple(source_npks),
             missing_img_paths=tuple(missing_img_paths),
+            missing_source_npks=tuple(missing_source_npks),
         )
 
     def missing_source_npks(

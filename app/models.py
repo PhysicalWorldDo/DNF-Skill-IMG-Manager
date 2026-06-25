@@ -29,6 +29,12 @@ class ExportJob:
 
 
 @dataclass(frozen=True)
+class MissingSourceNpk:
+    npk_name: str
+    img_path: str
+
+
+@dataclass(frozen=True)
 class ExportReport:
     skill: SkillRecord
     output_path: Path
@@ -36,6 +42,7 @@ class ExportReport:
     byte_count: int
     source_npks: tuple[Path, ...]
     missing_img_paths: tuple[str, ...] = ()
+    missing_source_npks: tuple[MissingSourceNpk, ...] = ()
 
 
 @dataclass(frozen=True)

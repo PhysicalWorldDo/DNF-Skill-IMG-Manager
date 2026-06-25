@@ -1222,6 +1222,10 @@ class MainWindow(QMainWindow):
                     self._log(f"跳过缺失 IMG: {skill.chinese_name} - {len(report.missing_img_paths)} 项")
                     for img_path in report.missing_img_paths:
                         self._log(f"  缺失: {img_path}")
+                if report.missing_source_npks:
+                    self._log(f"跳过缺失源 NPK: {skill.chinese_name} - {len(report.missing_source_npks)} 项")
+                    for missing in report.missing_source_npks:
+                        self._log(f"  缺失源 NPK: {missing.npk_name} -> {missing.img_path}")
         finally:
             QApplication.restoreOverrideCursor()
         QMessageBox.information(self, "导出完成", f"成功导出 {success}/{len(skills)} 个 NPK。")

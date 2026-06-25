@@ -1,4 +1,29 @@
-from build_package import copy_skill_pages
+from build_package import (
+    DNFLIB_DLL,
+    DNFLIB_DLL_NAME,
+    SKILL_DB_DLL,
+    SKILL_DB_DLL_NAME,
+    TOOLALL_ROOT,
+    copy_skill_pages,
+    pyinstaller_env,
+)
+
+
+def test_package_uses_renamed_skill_img_db_dll():
+    assert SKILL_DB_DLL_NAME == "SkillImgDb.dll"
+    assert SKILL_DB_DLL.name == "SkillImgDb.dll"
+
+
+def test_package_prefers_local_dnflib_dll():
+    assert DNFLIB_DLL_NAME == "dnflib.dll"
+    assert DNFLIB_DLL.name == "dnflib.dll"
+
+
+def test_pyinstaller_env_disables_user_site_packages():
+    env = pyinstaller_env()
+
+    assert env["PYTHONNOUSERSITE"] == "1"
+    assert env["PYTHONUSERBASE"] == str(TOOLALL_ROOT / ".build-venvs" / "_pyuserbase")
 
 
 def test_copy_skill_pages_places_local_skill_data_under_target_data(tmp_path):

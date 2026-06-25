@@ -1,7 +1,5 @@
 from pathlib import Path
 
-import pytest
-
 from app.exporter import ExportJob, NpkExporter
 from app.models import SkillRecord
 
@@ -84,10 +82,48 @@ def test_exporter_reports_missing_rule_based_source_npk(tmp_path):
         ["sprite/character/archer/effect/centrifugalvenom/bodydeco01.img"],
     )
 
-    with pytest.raises(FileNotFoundError, match="sprite_character_archer_effect_centrifugalvenom.NPK"):
-        exporter.export_skill(
-            ExportJob(skill=skill, source_dir=tmp_path, output_dir=tmp_path / "out")
-        )
+    report = exporter.export_skill(
+        ExportJob(skill=skill, source_dir=tmp_path, output_dir=tmp_path / "out")
+    )
+
+    assert report.entry_count == 0
+    assert report.missing_source_npks[0].npk_name == "sprite_character_archer_effect_centrifugalvenom.NPK"
+    assert report.missing_source_npks[0].img_path == (
+        "sprite/character/archer/effect/centrifugalvenom/bodydeco01.img"
+    )
+
+
+def test_exporter_skips_missing_source_npk_and_reports_it(tmp_path):
+    source_dir = tmp_path / "source"
+    source_dir.mkdir()
+    (source_dir / "sprite_character_thief_effect_yatagarasu.NPK").write_bytes(b"npk")
+
+    io = FakeNpkIO(
+        {
+            "sprite_character_thief_effect_yatagarasu.NPK": {
+                "sprite/character/thief/effect/yatagarasu/ember.img": b"ember",
+            },
+        }
+    )
+    exporter = NpkExporter(io)
+    skill = make_skill(
+        "火源限界·八咫乌",
+        [
+            "sprite/basic/floorring.img",
+            "sprite/character/thief/effect/yatagarasu/ember.img",
+        ],
+    )
+
+    report = exporter.export_skill(
+        ExportJob(skill=skill, source_dir=source_dir, output_dir=tmp_path / "out")
+    )
+
+    assert report.entry_count == 1
+    assert report.missing_source_npks[0].npk_name == "sprite_basic.NPK"
+    assert report.missing_source_npks[0].img_path == "sprite/basic/floorring.img"
+    assert io.written[0][1] == [
+        ("sprite/character/thief/effect/yatagarasu/ember.img", b"ember"),
+    ]
 
 
 def test_exporter_skips_missing_img_entries_and_reports_them(tmp_path):

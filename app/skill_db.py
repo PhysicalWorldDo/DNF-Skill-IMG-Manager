@@ -11,20 +11,24 @@ from .npk_paths import normalize_img_path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DNF_AUTOPLAY_ROOT = PROJECT_ROOT.parents[2]
 BUNDLE_DIR = Path(getattr(sys, "_MEIPASS", Path(sys.executable).resolve().parent))
-BUNDLED_SKILL_DB_DLL = BUNDLE_DIR / "PvfSkillImgDb.dll"
+SKILL_DB_DLL_NAME = "SkillImgDb.dll"
+BUNDLED_SKILL_DB_DLL = BUNDLE_DIR / SKILL_DB_DLL_NAME
+LOCAL_SKILL_DB_DLL = PROJECT_ROOT / SKILL_DB_DLL_NAME
 SOURCE_SKILL_DB_DLL = (
     DNF_AUTOPLAY_ROOT
     / "DNFPVF"
     / "summary"
     / "SkillImgNativeDll"
     / "dist"
-    / "PvfSkillImgDb.dll"
+    / SKILL_DB_DLL_NAME
 )
 
 
 def _default_skill_db_dll() -> Path:
     if getattr(sys, "frozen", False) and BUNDLED_SKILL_DB_DLL.exists():
         return BUNDLED_SKILL_DB_DLL
+    if LOCAL_SKILL_DB_DLL.exists():
+        return LOCAL_SKILL_DB_DLL
     return SOURCE_SKILL_DB_DLL if SOURCE_SKILL_DB_DLL.exists() else BUNDLED_SKILL_DB_DLL
 
 
@@ -57,69 +61,69 @@ class SkillDatabase:
     def __init__(self, dll_path: Path | str = DEFAULT_SKILL_DB_DLL):
         self.dll_path = Path(dll_path)
         if not self.dll_path.exists():
-            raise FileNotFoundError(f"PvfSkillImgDb.dll not found: {self.dll_path}")
+            raise FileNotFoundError(f"{SKILL_DB_DLL_NAME} not found: {self.dll_path}")
         self._dll = ctypes.CDLL(str(self.dll_path))
         self._configure()
         self._initialized = False
 
     def _configure(self) -> None:
         dll = self._dll
-        dll.pvf_skilldb_init.restype = ctypes.c_int
-        dll.pvf_skilldb_last_error.restype = ctypes.c_char_p
-        dll.pvf_skilldb_version.restype = ctypes.c_char_p
-        dll.pvf_skilldb_build_info.restype = ctypes.c_char_p
-        dll.pvf_skilldb_profession_count.restype = ctypes.c_int
-        dll.pvf_skilldb_total_skill_rows.restype = ctypes.c_int
-        dll.pvf_skilldb_profession_big.argtypes = [ctypes.c_int]
-        dll.pvf_skilldb_profession_big.restype = ctypes.c_char_p
-        dll.pvf_skilldb_profession_small.argtypes = [ctypes.c_int]
-        dll.pvf_skilldb_profession_small.restype = ctypes.c_char_p
-        dll.pvf_skilldb_skill_count.argtypes = [ctypes.c_char_p, ctypes.c_char_p]
-        dll.pvf_skilldb_skill_count.restype = ctypes.c_int
-        dll.pvf_skilldb_get_skill.argtypes = [
+        dll.skillimgdb_init.restype = ctypes.c_int
+        dll.skillimgdb_last_error.restype = ctypes.c_char_p
+        dll.skillimgdb_version.restype = ctypes.c_char_p
+        dll.skillimgdb_build_info.restype = ctypes.c_char_p
+        dll.skillimgdb_profession_count.restype = ctypes.c_int
+        dll.skillimgdb_total_skill_rows.restype = ctypes.c_int
+        dll.skillimgdb_profession_big.argtypes = [ctypes.c_int]
+        dll.skillimgdb_profession_big.restype = ctypes.c_char_p
+        dll.skillimgdb_profession_small.argtypes = [ctypes.c_int]
+        dll.skillimgdb_profession_small.restype = ctypes.c_char_p
+        dll.skillimgdb_skill_count.argtypes = [ctypes.c_char_p, ctypes.c_char_p]
+        dll.skillimgdb_skill_count.restype = ctypes.c_int
+        dll.skillimgdb_get_skill.argtypes = [
             ctypes.c_char_p,
             ctypes.c_char_p,
             ctypes.c_int,
             ctypes.POINTER(CSkillImg),
         ]
-        dll.pvf_skilldb_get_skill.restype = ctypes.c_int
-        dll.pvf_skilldb_find_skills.argtypes = [
+        dll.skillimgdb_get_skill.restype = ctypes.c_int
+        dll.skillimgdb_find_skills.argtypes = [
             ctypes.c_char_p,
             ctypes.c_char_p,
             ctypes.c_char_p,
             ctypes.POINTER(CSkillImg),
             ctypes.c_int,
         ]
-        dll.pvf_skilldb_find_skills.restype = ctypes.c_int
+        dll.skillimgdb_find_skills.restype = ctypes.c_int
 
     def init(self) -> None:
         if self._initialized:
             return
-        rc = self._dll.pvf_skilldb_init()
+        rc = self._dll.skillimgdb_init()
         if rc != 0:
-            raise RuntimeError(_text(self._dll.pvf_skilldb_last_error()))
+            raise RuntimeError(_text(self._dll.skillimgdb_last_error()))
         self._initialized = True
 
     @property
     def version(self) -> str:
-        return _text(self._dll.pvf_skilldb_version())
+        return _text(self._dll.skillimgdb_version())
 
     @property
     def build_info(self) -> str:
-        return _text(self._dll.pvf_skilldb_build_info())
+        return _text(self._dll.skillimgdb_build_info())
 
     @property
     def total_skill_rows(self) -> int:
         self.init()
-        return int(self._dll.pvf_skilldb_total_skill_rows())
+        return int(self._dll.skillimgdb_total_skill_rows())
 
     def professions(self) -> list[tuple[str, str]]:
         self.init()
-        count = int(self._dll.pvf_skilldb_profession_count())
+        count = int(self._dll.skillimgdb_profession_count())
         return [
             (
-                _text(self._dll.pvf_skilldb_profession_big(index)),
-                _text(self._dll.pvf_skilldb_profession_small(index)),
+                _text(self._dll.skillimgdb_profession_big(index)),
+                _text(self._dll.skillimgdb_profession_small(index)),
             )
             for index in range(count)
         ]
@@ -127,7 +131,7 @@ class SkillDatabase:
     def skills_for_profession(self, big_profession: str, small_profession: str) -> list[SkillRecord]:
         self.init()
         count = int(
-            self._dll.pvf_skilldb_skill_count(
+            self._dll.skillimgdb_skill_count(
                 _bytes(big_profession),
                 _bytes(small_profession),
             )
@@ -135,14 +139,14 @@ class SkillDatabase:
         records: list[SkillRecord] = []
         for index in range(count):
             item = CSkillImg()
-            rc = self._dll.pvf_skilldb_get_skill(
+            rc = self._dll.skillimgdb_get_skill(
                 _bytes(big_profession),
                 _bytes(small_profession),
                 index,
                 ctypes.byref(item),
             )
             if rc != 0:
-                raise RuntimeError(_text(self._dll.pvf_skilldb_last_error()))
+                raise RuntimeError(_text(self._dll.skillimgdb_last_error()))
             records.append(self._to_record(big_profession, small_profession, item))
         return records
 

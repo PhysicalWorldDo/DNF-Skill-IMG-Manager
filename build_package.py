@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -13,14 +14,19 @@ TOOL_ID = "dnf_skill_img_manager"
 TOOL_NAME = "DNF 角色技能 IMG 管理器"
 CATEGORY = "角色工具"
 DESCRIPTION = "查看 DNF 角色技能 IMG 数据，并按技能整理关联 IMG 导出 NPK。"
-VERSION = "1.1.4"
-RELEASE_DATE = "2026-06-24"
+VERSION = "1.1.6"
+RELEASE_DATE = "2026-06-25"
 EXE_NAME = "DNF_Skill_IMG_Manager"
 PACKAGE_NAME = f"{TOOL_ID}-{VERSION}-win-x64.zip"
 PROJECT_URL = "https://github.com/PhysicalWorldDo/DNF-Skill-IMG-Manager"
 CHANGELOG = [
     "导出技能时跳过源 NPK 中缺失的 IMG 条目，继续导出其余可读取 IMG。",
     "导出报告和日志会列出被跳过的缺失 IMG 路径。",
+]
+
+CHANGELOG = [
+    "导出时跳过缺失的源 NPK 文件，并在日志和导出报告中记录对应 IMG 路径。",
+    "保留 SkillImgDb.dll 数据库更新和本地 DLL 打包方式。",
 ]
 
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -30,8 +36,16 @@ STAGED_ROOT = TOOLALL_ROOT / "staged" / TOOL_ID
 PACKAGES_ROOT = TOOLALL_ROOT / "packages"
 INDEX_ROOT = TOOLALL_ROOT / "index"
 REGISTRY_ROOT = TOOLALL_ROOT / "registry_repo"
-SKILL_DB_DLL = DNF_AUTOPLAY_ROOT / "DNFPVF" / "summary" / "SkillImgNativeDll" / "dist" / "PvfSkillImgDb.dll"
-DNFLIB_DLL = DNF_AUTOPLAY_ROOT / "DNFlibrary" / "dnflib" / "build" / "dnflib.dll"
+SKILL_DB_DLL_NAME = "SkillImgDb.dll"
+LOCAL_SKILL_DB_DLL = PROJECT_ROOT / SKILL_DB_DLL_NAME
+SOURCE_SKILL_DB_DLL = (
+    DNF_AUTOPLAY_ROOT / "DNFPVF" / "summary" / "SkillImgNativeDll" / "dist" / SKILL_DB_DLL_NAME
+)
+SKILL_DB_DLL = LOCAL_SKILL_DB_DLL if LOCAL_SKILL_DB_DLL.exists() else SOURCE_SKILL_DB_DLL
+DNFLIB_DLL_NAME = "dnflib.dll"
+LOCAL_DNFLIB_DLL = PROJECT_ROOT / DNFLIB_DLL_NAME
+SOURCE_DNFLIB_DLL = DNF_AUTOPLAY_ROOT / "DNFlibrary" / "dnflib" / "build" / DNFLIB_DLL_NAME
+DNFLIB_DLL = LOCAL_DNFLIB_DLL if LOCAL_DNFLIB_DLL.exists() else SOURCE_DNFLIB_DLL
 
 
 def _assert_inside(child: Path, parent: Path) -> None:
@@ -109,6 +123,15 @@ def _write_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def pyinstaller_env() -> dict[str, str]:
+    env = os.environ.copy()
+    env["PYTHONNOUSERSITE"] = "1"
+    user_base = TOOLALL_ROOT / ".build-venvs" / "_pyuserbase"
+    user_base.mkdir(parents=True, exist_ok=True)
+    env["PYTHONUSERBASE"] = str(user_base)
+    return env
+
+
 def run_pyinstaller() -> Path:
     if not SKILL_DB_DLL.exists():
         raise FileNotFoundError(SKILL_DB_DLL)
@@ -129,7 +152,7 @@ def run_pyinstaller() -> Path:
         f"{DNFLIB_DLL};.",
         str(PROJECT_ROOT / "main.py"),
     ]
-    subprocess.run(cmd, cwd=PROJECT_ROOT, check=True)
+    subprocess.run(cmd, cwd=PROJECT_ROOT, check=True, env=pyinstaller_env())
     dist_dir = PROJECT_ROOT / "dist" / EXE_NAME
     if not (dist_dir / f"{EXE_NAME}.exe").exists():
         raise FileNotFoundError(dist_dir / f"{EXE_NAME}.exe")

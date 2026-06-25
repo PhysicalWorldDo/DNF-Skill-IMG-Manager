@@ -1,6 +1,11 @@
 from pathlib import Path
 
-from app.skill_db import DEFAULT_SKILL_DB_DLL, SkillDatabase
+from app.skill_db import DEFAULT_SKILL_DB_DLL, SKILL_DB_DLL_NAME, SkillDatabase
+
+
+def test_skill_db_uses_renamed_skill_img_db_dll():
+    assert SKILL_DB_DLL_NAME == "SkillImgDb.dll"
+    assert DEFAULT_SKILL_DB_DLL.name == "SkillImgDb.dll"
 
 
 def test_skill_db_can_enumerate_professions_and_find_known_skill():

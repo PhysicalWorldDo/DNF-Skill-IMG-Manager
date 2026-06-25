@@ -12,13 +12,17 @@ from .npk_paths import normalize_img_path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DNF_AUTOPLAY_ROOT = PROJECT_ROOT.parents[2]
 BUNDLE_DIR = Path(getattr(sys, "_MEIPASS", Path(sys.executable).resolve().parent))
-BUNDLED_DNFLIB_DLL = BUNDLE_DIR / "dnflib.dll"
+DNFLIB_DLL_NAME = "dnflib.dll"
+BUNDLED_DNFLIB_DLL = BUNDLE_DIR / DNFLIB_DLL_NAME
+LOCAL_DNFLIB_DLL = PROJECT_ROOT / DNFLIB_DLL_NAME
 SOURCE_DNFLIB_DLL = DNF_AUTOPLAY_ROOT / "DNFlibrary" / "dnflib" / "build" / "dnflib.dll"
 
 
 def _default_dnflib_dll() -> Path:
     if getattr(sys, "frozen", False) and BUNDLED_DNFLIB_DLL.exists():
         return BUNDLED_DNFLIB_DLL
+    if LOCAL_DNFLIB_DLL.exists():
+        return LOCAL_DNFLIB_DLL
     return SOURCE_DNFLIB_DLL if SOURCE_DNFLIB_DLL.exists() else BUNDLED_DNFLIB_DLL
 
 
